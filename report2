@@ -24,10 +24,6 @@
 
 userInput=1
 userName=`whoami`
-userEntryData=$(cat /etc/passwd | grep $userName)
-passwordExpirationLine=$(chage -l $userName | grep "Password expires")
-InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
-tcpOpenPortData=$(netstat -tan)
 
 defaultLines=15 
 if [ $# -eq 1 ]
@@ -56,6 +52,11 @@ do
 
     if [ "$userInput" = "1" ]
     then
+
+        userEntryData=$(cat /etc/passwd | grep $userName)
+        passwordExpirationLine=$(chage -l $userName | grep "Password expires")
+        InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
+
         fullName=$(echo "$userEntryData" | cut -d ':' -f 5) # -f 5 because we want 5th column of data as shown above
         homeDirectory=$(echo "$userEntryData" | cut -d ':' -f 6) # -f 6 because we want 6th column of data as shown above
         shell=$(echo "$userEntryData" | cut -d ':' -f 7) # -f 7 because we want 7th column of data as shown above
@@ -116,6 +117,8 @@ do
 
     elif [ "$userInput" = "6" ]
     then
+        tcpOpenPortData=$(netstat -tan)
+
         echo 
         echo " (6) Open TCP Ports"
         echo "$tcpOpenPortData"
