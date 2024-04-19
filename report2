@@ -24,6 +24,7 @@
 
 userInput=1
 userName=`whoami`
+InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
 
 defaultLines=15 
 if [ $# -eq 1 ]
@@ -55,7 +56,6 @@ do
 
         userEntryData=$(cat /etc/passwd | grep $userName)
         passwordExpirationLine=$(chage -l $userName | grep "Password expires")
-        InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
 
         fullName=$(echo "$userEntryData" | cut -d ':' -f 5) # -f 5 because we want 5th column of data as shown above
         homeDirectory=$(echo "$userEntryData" | cut -d ':' -f 6) # -f 6 because we want 6th column of data as shown above
@@ -82,6 +82,12 @@ do
 
     elif [ "$userInput" = "2" ]
     then
+
+        echo
+        echo "Fields are: IP address, date and time, HTTP method, path to page, query string, content type, status code,"
+        echo "content size (bytes), total size (bytes), client browser info, response time (microseconds)"
+        echo
+        grep "$ChosenIPaddress" /var/log/httpd/access_log | grep -v '/pma/' | tail "-$defaultLines"
         
         
         echo
