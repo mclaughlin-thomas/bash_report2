@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Name:         Thomas McLaughlin
+# Project:      Bash Project 2
+# Date:         4/18/2024
+# File(s):      report2
+# Description:  This bash script when run, acts as a menu-driven program. The script repeatedly presents the 
+#               the user with a menu where the user can select any of the following options and display their
+#               information respectively. This script can show the following information:
+#
+#               0 - Quit the program
+#               1 - 
+#               2 - 
+#               3 - 
+#               4 - 
+#               5 - Limited Fork Bomb Stress Test with Corresponding Memory Usage (Safe to Run)
+#               6 - 
+#               7 - 
+#               8 - 
+
+
+userInput=1
+
+while [ "$userInput" != "0" ]
+do
+    echo 
+    echo "Report 2"
+    echo
+    echo "   0 -  Quit"
+    echo "   1 -  List recent errors logged by the web server for your IP address"
+    echo "   2 -  Show the last several lines of the webserver access log for this user"
+    echo "   3 -  Show the last several lines of the webserver error log for this user"
+    echo "   4 -  Show the last several logins for this user"
+    echo "   5 -  Limited Fork Bomb Stress Test with Corresponding Memory Usage (Safe to Run)"
+    echo "   6 -  Show the open TCP ports"
+    echo "   7 -  Display the following system information: uptime and users on the system, and whether the webserver appears to be running"
+    echo "   8 -  Change the default number of lines to show in choices 2, 3, 4"
+    echo
+    echo "Enter number for your choice: "
+    read userInput
+
+    if [ $userInput -eq 1 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 2 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 3 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 4 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 5 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 6 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 7 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+    if [ $userInput -eq 8 ]
+    then
+        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+    fi
+
+   
+done
+
+
+if [ $# -eq 1 ]
+then
+   numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+fi
