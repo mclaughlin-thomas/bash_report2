@@ -24,6 +24,14 @@
 
 userInput=1
 userName=`whoami`
+userEntryData=$(cat /etc/passwd | grep $userName)
+passwordExpirationLine=$(chage -l $userName | grep "Password expires")
+InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
+tcpOpenPortData=$(netstat -tan)
+
+
+
+
 
 
 
@@ -49,37 +57,98 @@ do
 
     if [ "$userInput" = "1" ]
     then
-        userInput=1
+        fullName=$(echo "$userEntryData" | cut -d ':' -f 5) # -f 5 because we want 5th column of data as shown above
+        homeDirectory=$(echo "$userEntryData" | cut -d ':' -f 6) # -f 6 because we want 6th column of data as shown above
+        shell=$(echo "$userEntryData" | cut -d ':' -f 7) # -f 7 because we want 7th column of data as shown above
+        #      username:pass:UID:GID:Fullname:homeDir:shell
+        #         1    :  2 : 3 : 4 :   5    :   6   :  7
+
+        passwordExpirationDate=$(echo "$passwordExpirationLine" | cut -d ':' -f 2) # -f because we want 2nd column of data as shown above
+        #      Password expires     :   Jun 12, 2024
+        #               1           :         2
+
+        echo 
+        echo " (1) User Information:"
+        echo "     - Username : $userName"
+        echo "     - Full Name : $fullName"
+        echo "     - Home Directory : $homeDirectory"
+        echo "     - Shell : $shell"
+        echo "     - Password Expiration Information : $passwordExpirationDate"
+        echo "     - IP Address : $InitialIPaddress"
+        
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "2" ]
     then
         userInput=1
+        
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "3" ]
     then
         userInput=1
+        
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "4" ]
     then
-        userInput=1
+        loginData=$(last -$defaultLines $userName | grep -v "wtmp")
+        echo 
+        echo " (4) Last Several Logins For This User"
+        echo "$loginData"
+
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "5" ]
     then
         userInput=1
 
+        echo
+        echo "Press ENTER"
+        read junk
+
     elif [ "$userInput" = "6" ]
     then
-        userInput=1
+        echo 
+        echo " (6) Open TCP Ports"
+        echo "$tcpOpenPortData"
+
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "7" ]
     then
-        userInput=1
+        echo 
+        echo " (7) System Information:"
+        echo
+        echo "$(w)"
+        echo
+        if ps aux | grep -q '[h]ttpd'; then
+            echo "     The web server is up..."
+        else
+            serverUp=false
+            echo "     The web server is NOT up..."
+        fi
+
+        echo
+        echo "Press ENTER"
+        read junk
 
     elif [ "$userInput" = "8" ]
     then
         echo
         echo "Enter the new default number of lines to show in choices 2, 3, 4 "
         read defaultLines
+
     fi
 
    
