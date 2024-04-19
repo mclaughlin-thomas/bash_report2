@@ -87,9 +87,3 @@ do
 
    
 done
-
-
-if [ $# -eq 1 ]
-then
-   numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
-fi
