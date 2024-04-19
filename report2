@@ -118,7 +118,19 @@ do
 
     elif [ "$userInput" = "5" ]
     then
-        userInput=1
+        echo "My Choice"
+
+        maxProcess=$(ulimit -u)
+        echo "Max number of processes for user: $maxProcess"
+        echo
+
+        curProcess=$(ps -u $userName --no-headers | wc -l)
+        echo "Number of processes running for this user: $curProcess"
+        echo
+
+        remainingProcesses=$((maxProcess - curProcess))
+
+        echo "Number of processes left for this user: $remainingProcesses"
 
         echo
         echo "Press ENTER"
