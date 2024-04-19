@@ -1,25 +1,29 @@
 #!/bin/bash
-
-# Name:         Thomas McLaughlin
-# Project:      Bash Project 2
-# Date:         4/18/2024
-# File(s):      report2
+#
+# Filename: report2
+#
+# Author: Thomas McLaughlin
+#
+# Date: Apr 18, 2024
+# Revised: Apr 22, 2024
+#
 # Description:  This bash script when run, acts as a menu-driven program. The script repeatedly presents the 
 #               the user with a menu where the user can select any of the following options and display their
 #               information respectively. This script can show the following information:
 #
 #               0 - Quit the program
-#               1 - 
-#               2 - 
-#               3 - 
-#               4 - 
+#               1 - List recent errors logged by the web server for your IP address
+#               2 - Show the last several lines of the webserver access log for this user
+#               3 - Show the last several lines of the webserver error log for this user
+#               4 - Show the last several logins for this user
 #               5 - Limited Fork Bomb Stress Test with Corresponding Memory Usage (Safe to Run)
-#               6 - 
-#               7 - 
-#               8 - 
+#               6 - Show the open TCP ports
+#               7 - Display the following system information: uptime and users on the system, and whether the webserver appears to be running
+#               8 - Change the default number of lines to show in choices 2, 3, 4
 
 
 userInput=1
+defaultLines=15 # The default number of lines for 2, 3, 4
 
 while [ "$userInput" != "0" ]
 do
@@ -35,48 +39,50 @@ do
     echo "   6 -  Show the open TCP ports"
     echo "   7 -  Display the following system information: uptime and users on the system, and whether the webserver appears to be running"
     echo "   8 -  Change the default number of lines to show in choices 2, 3, 4"
-    echo
+    echo "   DEBUGGER defualt lines: $defaultLines"
     echo "Enter number for your choice: "
     read userInput
 
     if [ $userInput -eq 1 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 2 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 3 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 4 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 5 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 6 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 7 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        userInput=1
     fi
 
     if [ $userInput -eq 8 ]
     then
-        numberLastLogins=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+        echo
+        echo "Enter the new default number of lines to show in choices 2, 3, 4 "
+        read defaultLines
     fi
 
    
