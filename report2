@@ -118,7 +118,7 @@ do
 
     elif [ "$userInput" = "5" ]
     then
-        echo "My Choice"
+        echo
 
         maxProcess=$(ulimit -u)
         echo "Max number of processes for user: $maxProcess"
