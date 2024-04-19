@@ -82,7 +82,7 @@ do
 
     elif [ "$userInput" = "2" ]
     then
-        userInput=1
+        
         
         echo
         echo "Press ENTER"
@@ -90,7 +90,7 @@ do
 
     elif [ "$userInput" = "3" ]
     then
-        userInput=1
+        
         
         echo
         echo "Press ENTER"
