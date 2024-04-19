@@ -16,7 +16,7 @@
 #               2 - Show the last several lines of the webserver access log for this user
 #               3 - Show the last several lines of the webserver error log for this user
 #               4 - Show the last several logins for this user
-#               5 - Limited Fork Bomb Stress Test with Corresponding Memory Usage (Safe to Run)
+#               5 - Max number of processes for user, sftp connections
 #               6 - Show the open TCP ports
 #               7 - Display the following system information: uptime and users on the system, and whether the webserver appears to be running
 #               8 - Change the default number of lines to show in choices 2, 3, 4
@@ -29,13 +29,12 @@ passwordExpirationLine=$(chage -l $userName | grep "Password expires")
 InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
 tcpOpenPortData=$(netstat -tan)
 
+defaultLines=15 
+if [ $# -eq 1 ]
+then
+   defaultLines=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
+fi
 
-
-
-
-
-
-defaultLines=15 # The default number of lines for 2, 3, 4
 
 while [ "$userInput" != "0" ]
 do
@@ -47,7 +46,7 @@ do
     echo "   2 -  Show the last several lines of the webserver access log for this user"
     echo "   3 -  Show the last several lines of the webserver error log for this user"
     echo "   4 -  Show the last several logins for this user"
-    echo "   5 -  Limited Fork Bomb Stress Test with Corresponding Memory Usage (Safe to Run)"
+    echo "   5 -  xxx"
     echo "   6 -  Show the open TCP ports"
     echo "   7 -  Display the following system information: uptime and users on the system, and whether the webserver appears to be running"
     echo "   8 -  Change the default number of lines to show in choices 2, 3, 4"
