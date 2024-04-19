@@ -12,7 +12,7 @@
 #               information respectively. This script can show the following information:
 #
 #               0 - Quit the program
-#               1 - List recent errors logged by the web server for your IP address
+#               1 - Show user info including: username, fullname, home directory, shell, password expiration info and IP address
 #               2 - Show the last several lines of the webserver access log for this user
 #               3 - Show the last several lines of the webserver error log for this user
 #               4 - Show the last several logins for this user
@@ -23,6 +23,10 @@
 
 
 userInput=1
+userName=`whoami`
+
+
+
 defaultLines=15 # The default number of lines for 2, 3, 4
 
 while [ "$userInput" != "0" ]
@@ -31,7 +35,7 @@ do
     echo "Report 2"
     echo
     echo "   0 -  Quit"
-    echo "   1 -  List recent errors logged by the web server for your IP address"
+    echo "   1 -  Show user info including: username, fullname, home directory, shell, password expiration info and IP address"
     echo "   2 -  Show the last several lines of the webserver access log for this user"
     echo "   3 -  Show the last several lines of the webserver error log for this user"
     echo "   4 -  Show the last several logins for this user"
@@ -43,42 +47,35 @@ do
     echo "Enter number for your choice: "
     read userInput
 
-    if [ $userInput -eq 1 ]
+    if [ "$userInput" = "1" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 2 ]
+    elif [ "$userInput" = "2" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 3 ]
+    elif [ "$userInput" = "3" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 4 ]
+    elif [ "$userInput" = "4" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 5 ]
+    elif [ "$userInput" = "5" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 6 ]
+    elif [ "$userInput" = "6" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 7 ]
+    elif [ "$userInput" = "7" ]
     then
         userInput=1
-    fi
 
-    if [ $userInput -eq 8 ]
+    elif [ "$userInput" = "8" ]
     then
         echo
         echo "Enter the new default number of lines to show in choices 2, 3, 4 "
