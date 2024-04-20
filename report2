@@ -86,6 +86,7 @@ do
         echo
         echo "Fields are: IP address, date and time, HTTP method, path to page, query string, content type, status code,"
         echo "content size (bytes), total size (bytes), client browser info, response time (microseconds)"
+        echo "$InitialIPaddress"
         echo
         grep "$InitialIPaddress" /var/log/httpd/access_log | grep -v '/pma/' | tail "-$defaultLines"
         echo
@@ -118,25 +119,32 @@ do
 
     elif [ "$userInput" = "5" ]
     then
+
+        maxUserProcess=$(ulimit -u)
         echo
+        echo "Max number of processes allowed for user: $maxUserProcess"
+        echo
+
+        curUserProcess=$(ps -u $userName --no-headers | wc -l)
+
+        remainingProcesses=$((maxUserProcess - curUserProcess))
+
+        echo "Number of processes left for this user: $remainingProcesses"
+        echo
+
+
+        echo "Number of processes running for this user: $curUserProcess"
+        echo
+
+        
+
+        echo "------------------------------------------------"
 
         totalProcess=$(ps aux --no-headers | wc -l)
         echo "Total processes running on system: $totalProcess"
         echo
 
-        maxUserProcess=$(ulimit -u)
-        echo "Max number of processes allowed for user: $maxUserProcess"
-        echo
-
-        curUserProcess=$(ps -u $userName --no-headers | wc -l)
-        echo "Number of processes running for this user: $curUserProcess"
-        echo
-
-        remainingProcesses=$((maxUserProcess - curUserProcess))
-
-        echo "Number of processes left for this user: $remainingProcesses"
-
-        percentageOfTotal=$(echo "scale=2; $curUserProcess / $totalProcess * 100" | bc)
+        percentageOfTotal=$(echo "scale=4; $curUserProcess / $totalProcess * 100" | bc)
         echo
         echo "Percentage of total processes running that belong to user: $percentageOfTotal %"
         
