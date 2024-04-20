@@ -86,7 +86,6 @@ do
         echo
         echo "Fields are: IP address, date and time, HTTP method, path to page, query string, content type, status code,"
         echo "content size (bytes), total size (bytes), client browser info, response time (microseconds)"
-        echo "$InitialIPaddress"
         echo
         grep "$InitialIPaddress" /var/log/httpd/access_log | grep -v '/pma/' | tail "-$defaultLines"
         echo
