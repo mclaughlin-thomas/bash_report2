@@ -120,18 +120,26 @@ do
     then
         echo
 
-        maxProcess=$(ulimit -u)
-        echo "Max number of processes for user: $maxProcess"
+        totalProcess=$(ps aux --no-headers | wc -l)
+        echo "Total processes running on system: $totalProcess"
         echo
 
-        curProcess=$(ps -u $userName --no-headers | wc -l)
-        echo "Number of processes running for this user: $curProcess"
+        maxUserProcess=$(ulimit -u)
+        echo "Max number of processes allowed for user: $maxUserProcess"
         echo
 
-        remainingProcesses=$((maxProcess - curProcess))
+        curUserProcess=$(ps -u $userName --no-headers | wc -l)
+        echo "Number of processes running for this user: $curUserProcess"
+        echo
+
+        remainingProcesses=$((maxUserProcess - curUserProcess))
 
         echo "Number of processes left for this user: $remainingProcesses"
 
+        percentageOfTotal=$(echo "scale=2; $curUserProcess / $totalProcess * 100" | bc)
+        echo
+        echo "Percentage of total processes running that belong to user: $percentageOfTotal %"
+        
         echo
         echo "Press ENTER"
         read junk
