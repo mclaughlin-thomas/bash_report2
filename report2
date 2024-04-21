@@ -27,6 +27,14 @@ userName=`whoami`
 InitialIPaddress=`who am i | cut -d '(' -f2 | cut -d ')' -f1`
 
 defaultLines=15 
+
+if [ $# -gt 1 ]
+then
+    echo "Error! Too many arguments provided!"
+    echo "Correct syntax is: ./report2 <how many lines you want>"
+    exit 1
+fi
+
 if [ $# -eq 1 ]
 then
    defaultLines=$1 # setting numberLastLogins to parameter provided, if a parameter is provided
