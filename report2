@@ -186,7 +186,15 @@ do
         echo
         echo "Enter the new default number of lines to show in choices 2, 3, 4 "
         read defaultLines
-
+    elif [ "$userInput" != "0" ]
+    then
+        echo
+        echo "No such menu option"
+        echo
+        echo "The correct syntax requires a number 0-8 to be entered."
+        echo
+        echo "Press ENTER"
+        read junk
     fi
 
     clear
