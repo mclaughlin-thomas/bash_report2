@@ -21,6 +21,7 @@
 #               7 - Display the following system information: uptime and users on the system, and whether the webserver appears to be running
 #               8 - Change the default number of lines to show in choices 2, 3, 4
 
+clear
 
 userInput=1 # initialize userInput to 1 to enter the loop
 userName=`whoami` # get the username of the user running the script
